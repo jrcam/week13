@@ -1,0 +1,62 @@
+ArrayList<sticks> nation;
+
+void setup() {
+  size(800,600,P3D);
+  nation = new ArrayList <sticks>();
+  for(int i=0;i<100; i++) {
+    nation.add(new sticks());
+  }
+}
+
+void draw() {
+  background(0);
+   for(sticks j:nation) {
+     j.update();
+   }
+}
+
+
+
+class sticks {
+  
+  float x,y,s,z;
+  float R,G,B;
+  
+  sticks() {
+    x = random(800);
+    y = random(600);
+    z = 0;
+    s = random(0.5,1);
+    R = random(0,255);
+    G = random(0,255);
+    B = random(0,255);
+  }
+  
+  
+  void update() {
+   rate();
+   bottom();
+   droplets();
+  }
+
+void rate() {
+ x = x+random(s)*10; 
+ rotateX(frameCount*0.001);
+ rotateZ(frameCount*0.001);
+}
+
+void bottom() {
+  if (x > 800) {
+  x = 0;
+  x = random(600);
+  
+  }  
+}
+
+void droplets() {
+  fill(R,G,B);
+  rect(x,y,50,50);
+}  
+
+
+}
